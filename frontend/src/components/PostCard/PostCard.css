@@ -1,0 +1,26 @@
+.postHeader {
+  display: flex;
+  align-items: center;
+}
+.PostUsername {
+  padding-left: 10px;
+  font-size: 16px;
+  cursor: pointer;
+  color: black;
+}
+.postImg {
+  padding-top: 15px;
+}
+.singleComment {
+  padding-bottom: 5px;
+  display: flex;
+  align-items: flex-start;
+}
+.singleComment--name {
+  padding-left: 6px;
+  padding-right: 7px;
+  font-weight: bold;
+}
+.singleComment--content {
+  overflow: visible;
+}

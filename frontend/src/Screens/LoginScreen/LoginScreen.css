@@ -1,0 +1,60 @@
+.svgArt {
+  padding: 30px;
+  height: 80vh;
+  display: flex;
+  align-items: center;
+}
+
+.mainForm {
+  height: 78vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 0 20px;
+}
+
+.FormHeading {
+  font-size: 80px;
+  font-family: "Work Sans", sans-serif;
+  align-self: center;
+}
+
+.FormHeadingSmall {
+  display: none;
+  font-size: 60px;
+  font-family: "Work Sans", sans-serif;
+}
+
+@media (max-width: 770px) {
+  .svgArt {
+    height: 30vh;
+    padding: 60px;
+    display: flex;
+    justify-content: center;
+  }
+  .mainForm {
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 0 5px;
+  }
+  .FormHeading {
+    display: none;
+  }
+  .FormHeadingSmall {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    margin-bottom: 10px;
+  }
+}
+
+@media (max-width: 459px) {
+  .svgArt {
+    height: 27vh;
+  }
+  .FormHeadingSmall {
+    margin: 0;
+  }
+}

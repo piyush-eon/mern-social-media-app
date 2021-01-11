@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Button, Card, Col, Form, Modal, Row } from "react-bootstrap";
 import emotes from "../static/emotes";
 
-const PostBox = () => {
+const PostBox = ({ userInfo }) => {
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
@@ -15,13 +15,16 @@ const PostBox = () => {
 
   const [feeling, setFeeling] = useState("Feeling");
 
+  const user = JSON.parse(userInfo);
+
   return (
     <Card>
       <Card.Body>
         <Row>
           <Col lg={1} xs={2}>
             <img
-              src="https://cdn.iconscout.com/icon/free/png-256/avatar-370-456322.png"
+              style={{ borderRadius: 50 }}
+              src={user.pic}
               alt="Piyush Agarwal"
               width="40"
               // height='35'
@@ -75,6 +78,7 @@ const PostBox = () => {
                   <button
                     className="feelOption"
                     onClick={() => handleFeeling(feel.node.object.name)}
+                    key={feel.node.object.name}
                   >
                     <img
                       src={`${feel.node.icon.image.uri}`}

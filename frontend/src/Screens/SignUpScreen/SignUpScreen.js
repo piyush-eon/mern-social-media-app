@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./SignUpScreen.css";
 import MainScreen from "../../components/MainScreen/MainScreen";
 import { Button, Col, Form } from "react-bootstrap";
@@ -6,8 +6,10 @@ import { Link } from "react-router-dom";
 import Loader from "../../components/Loader";
 import ErrorMessage from "../../components/ErrorMessage";
 import Compress from "compress.js";
+import { useDispatch, useSelector } from "react-redux";
+import { register } from "../../actions/userActions";
 
-const SignUpScreen = () => {
+const SignUpScreen = ({ history }) => {
   const [email, setEmail] = useState("");
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
@@ -66,8 +68,20 @@ const SignUpScreen = () => {
     }
   };
 
+  const dispatch = useDispatch();
+
+  const userRegister = useSelector((state) => state.userRegister);
+  const { loading, userInfo, error } = userRegister;
+
+  useEffect(() => {
+    if (userInfo) {
+      history.push("/");
+    }
+  }, [dispatch, userInfo, history]);
+
   const submitHandler = (e) => {
     e.preventDefault();
+    dispatch(register(name, email, password, pic));
   };
 
   return (
@@ -77,12 +91,14 @@ const SignUpScreen = () => {
       </span>
       <Col lg={6} md={6} sm={12}>
         <div className="svgArt">
-          <img src="/svgs/register.svg" width="100%" />
+          <img src="/svgs/register.svg" alt="register" width="100%" />
         </div>
       </Col>
       <Col>
         <Form onSubmit={submitHandler} className="mainForm">
           <span className="FormHeading">SIGN UP</span>
+          {error && <ErrorMessage variant="danger">{error}</ErrorMessage>}
+          {loading && <Loader />}
           <Form.Group controlId="formBasicName">
             <Form.Control
               type="text"

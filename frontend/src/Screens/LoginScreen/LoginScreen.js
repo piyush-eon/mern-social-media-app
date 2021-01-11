@@ -21,7 +21,7 @@ const LoginScreen = ({ history }) => {
     if (userInfo) {
       history.push("/");
     }
-  }, [dispatch, userInfo]);
+  }, [dispatch, userInfo, history]);
 
   const submitHandler = (e) => {
     e.preventDefault();
@@ -35,7 +35,7 @@ const LoginScreen = ({ history }) => {
       </span>
       <Col lg={6} md={6} sm={12}>
         <div className="svgArt">
-          <img src="/svgs/login.svg" width="100%" />
+          <img src="/svgs/login.svg" alt="login" width="100%" />
         </div>
       </Col>
       <Col>

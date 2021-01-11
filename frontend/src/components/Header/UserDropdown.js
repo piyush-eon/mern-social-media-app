@@ -1,7 +1,7 @@
 import React from "react";
 import { Dropdown } from "react-bootstrap";
 
-const UserDropdown = () => {
+const UserDropdown = ({ logoutHandler }) => {
   return (
     <Dropdown>
       <Dropdown.Toggle id="dropdown-basic">
@@ -16,7 +16,9 @@ const UserDropdown = () => {
         <Dropdown.Item href="#action/3.1">My Profile</Dropdown.Item>
         <Dropdown.Item href="#action/3.2">Settings</Dropdown.Item>
         <Dropdown.Divider />
-        <Dropdown.Item href="#action/3.4">Log Out</Dropdown.Item>
+        <Dropdown.Item href="#action/3.4" onClick={logoutHandler}>
+          Log Out
+        </Dropdown.Item>
       </Dropdown.Menu>
     </Dropdown>
   );

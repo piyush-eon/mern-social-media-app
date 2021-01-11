@@ -1,15 +1,31 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./LoginScreen.css";
 import MainScreen from "../../components/MainScreen/MainScreen";
 import { Button, Col, Form } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { login } from "../../actions/userActions";
+import Loader from "../../components/Loader";
+import ErrorMessage from "../../components/ErrorMessage";
 
-const LoginScreen = () => {
+const LoginScreen = ({ history }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
+  const dispatch = useDispatch();
+
+  const userLogin = useSelector((state) => state.userLogin);
+  const { loading, error, userInfo } = userLogin;
+
+  useEffect(() => {
+    if (userInfo) {
+      history.push("/");
+    }
+  }, [dispatch, userInfo]);
+
   const submitHandler = (e) => {
     e.preventDefault();
+    dispatch(login(email, password));
   };
 
   return (
@@ -25,6 +41,8 @@ const LoginScreen = () => {
       <Col>
         <Form onSubmit={submitHandler} className="mainForm">
           <span className="FormHeading">LOGIN</span>
+          {error && <ErrorMessage variant="danger">{error}</ErrorMessage>}
+          {loading && <Loader />}
           <Form.Group controlId="formBasicEmail">
             {/* <Form.Label>Email address</Form.Label> */}
             <Form.Control
@@ -44,7 +62,6 @@ const LoginScreen = () => {
               onChange={(e) => setPassword(e.target.value)}
             />
           </Form.Group>
-
           <Button variant="success" type="submit">
             Submit
           </Button>

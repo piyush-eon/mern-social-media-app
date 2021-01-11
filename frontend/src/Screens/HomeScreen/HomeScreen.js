@@ -16,9 +16,7 @@ export const HomeScreen = () => {
         <PostBox />
         <PostCard />
       </Col>
-      <Col className="d-none d-md-block">
-        <NewsSection />
-      </Col>
+      <Col className="d-none d-md-block">{/* <NewsSection /> */}</Col>
     </MainScreen>
   );
 };

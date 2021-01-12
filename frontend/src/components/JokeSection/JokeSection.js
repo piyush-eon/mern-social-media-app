@@ -11,7 +11,6 @@ const JokeSection = () => {
     const joke = await axios.get(
       `https://official-joke-api.appspot.com/jokes/general/ten`
     );
-    // console.log(joke.data);
     setJokesArray(joke.data);
     setJokeResults(joke.data.length);
   };

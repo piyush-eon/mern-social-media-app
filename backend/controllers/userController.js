@@ -3,7 +3,7 @@ import User from "../models/userModel.js";
 import generateToken from "../utils/generateToken.js";
 
 //@description     Register new user
-//@route           POST /api/users/register
+//@route           POST /api/user/register
 //@access          Public
 const registerUser = asyncHandler(async (req, res) => {
   const { name, email, password, pic } = req.body;
@@ -31,7 +31,7 @@ const registerUser = asyncHandler(async (req, res) => {
 });
 
 //@description     Login the user
-//@route           POST /api/users/login
+//@route           POST /api/user/login
 //@access          Public
 const loginUser = asyncHandler(async (req, res) => {
   const { email, password } = req.body;
